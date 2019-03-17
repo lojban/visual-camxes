@@ -1,0 +1,15 @@
+[Unit]
+Description=Site/Webserver for visual_camxes.lojban.org
+
+[Service]
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=visual_camxes
+WorkingDirectory=/home/sampre_cx/visual_camxes
+ExecStart=/bin/bash -x /home/sampre_cx/visual_camxes/run_container.sh 2>&1
+ExecStop=/bin/bash -x /home/sampre_cx/visual_camxes/kill_container.sh 2>&1
+TimeoutStartSec=10min
+
+[Install]
+WantedBy=default.target
