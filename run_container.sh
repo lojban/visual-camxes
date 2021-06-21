@@ -34,7 +34,7 @@ echo
 echo "Launching website container, which will listen on web_port $web_port"
 echo
 
-sudo $CONTAINER_BIN run --name lojban_visual_camxes -p $web_port:8080 \
+$CONTAINER_BIN run --userns=keep-id --name lojban_visual_camxes -p $web_port:8080 \
         -v /home/sampre_cx/visual_camxes:/home/sampre_cx/visual_camxes \
         -i $hasterm lojban/visual_camxes:$ITERATION \
-        bash -c "gunicorn wsgi:app --access-logfile - --error-logfile - -w 1 -b 0.0.0.0:8080"
+        bash -c "gunicorn wsgi:app --access-logfile - --error-logfile - --access-logformat '%(h)s %({x-forwarded-for}i)s %(l)s %(u)s %(t)s \"%(r)s\" %(s)s %(b)s \"%(f)s\" \"%(a)s\"' -w 1 -b 0.0.0.0:8080"

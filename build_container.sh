@@ -14,6 +14,6 @@ echo
 echo "Building visual_camxes container."
 echo
 
-sudo $CONTAINER_BIN build --build-arg=CX_USERID=$(id -u) --build-arg=CX_GROUPID=$(id -g) \
+$CONTAINER_BIN build --build-arg=CX_USERID=$(id -u) --build-arg=CX_GROUPID=$(id -g) \
         -t lojban/visual_camxes:$ITERATION \
         -f Dockerfile .
